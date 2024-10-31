@@ -12,6 +12,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
+            <ImageView
+                android:id="@+id/image_titulo"
+                app:layout_constraintTop_toTopOf="parent"
+                android:background="@color/purple_200"
+                android:src="@drawable/ic_launcher_foreground"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
             <LinearLayout
                 android:id="@+id/layout_titulo"
                 android:layout_width="wrap_content"
@@ -20,13 +28,13 @@
                 android:orientation="horizontal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toBottomOf="@id/image_titulo">
 
                 <TextView
                     android:id="@+id/text_titulo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Exemplo"
+                    android:text="Título"
                     android:textSize="16sp" />
 
                 <TextView
@@ -50,6 +58,16 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/layout_titulo" />
 
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/input_usuario"
+                app:layout_constraintTop_toBottomOf="@id/text_conteudo"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="30dp"
+                android:layout_width="180dp"
+                android:hint="Dados"
+                android:layout_height="wrap_content"/>
+
             <Button
                 android:id="@+id/button_acao"
                 android:layout_width="wrap_content"
@@ -60,7 +78,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/text_conteudo" />
+                app:layout_constraintTop_toBottomOf="@id/input_usuario" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 

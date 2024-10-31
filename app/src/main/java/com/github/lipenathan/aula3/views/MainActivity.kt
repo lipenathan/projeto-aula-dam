@@ -2,40 +2,72 @@ package com.github.lipenathan.aula3.views
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Button
-import android.widget.TextView
+import android.util.Log
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
-import com.github.lipenathan.aula3.R
+import com.github.lipenathan.aula3.databinding.ActivityMainBinding
 import com.github.lipenathan.aula3.entities.Person
-import com.google.android.material.snackbar.Snackbar
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var textTitulo: TextView
-    private lateinit var textConteudo: TextView
-    private lateinit var button: Button
+    private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-
-        textTitulo = findViewById(R.id.text_titulo)
-        textConteudo = findViewById(R.id.text_conteudo)
-        button = findViewById(R.id.button_acao)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         val launcher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-            result.data?.let {
-                val p = it.getSerializableExtra("person_result") as Person
-                textConteudo.text = p.toString()
+            //será executado após a acitivty que está iniciar for finalizada
+
+            if (result.data != null) {
+                val person = result.data!!.getSerializableExtra("cadastro_result") as Person
+                binding.textConteudo.text = person.toString()
             }
         }
 
-        val intent = Intent(this, CadastroPessoaActivity::class.java)
+        binding.apply {
+            if (savedInstanceState != null) {
+                textConteudo.text = savedInstanceState.getString(textConteudo.id.toString())
+            }
 
-        button.setOnClickListener {
-            launcher.launch(intent)
+            buttonAcao.setOnClickListener {
+                val text = inputUsuario.text.toString()
+                textConteudo.text = text
+
+                val intent = Intent(this@MainActivity, CadastroPessoaActivity::class.java)
+
+                launcher.launch(intent)
+            }
         }
-
     }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        val value = binding.textConteudo.text.toString()
+        outState.putString(binding.textConteudo.id.toString(), value)
+    }
+
+    //region ciclo de vida
+
+    override fun onResume() {
+        super.onResume()
+        Log.i("CICLO_DE_VIDA", "Ciclo de vida ON RESUME")
+    }
+
+    override fun onStart() {
+        super.onStart()
+        Log.i("CICLO_DE_VIDA", "Ciclo de vida ON START")
+    }
+
+    override fun onStop() {
+        super.onStop()
+        Log.i("CICLO_DE_VIDA", "Ciclo de vida ON STOP")
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        Log.i("CICLO_DE_VIDA", "Ciclo de vida ON DESTROY")
+    }
+    //endregion
 }
