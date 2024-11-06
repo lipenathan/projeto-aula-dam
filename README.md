@@ -16,3 +16,4 @@ Tópicos Abordados até aqui:
 - Manipulando dados da UI/XML
 - ViewBinding
 - Navegação
+- Coroutines
