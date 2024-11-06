@@ -1,4 +1,4 @@
-package com.github.lipenathan.aula3.entities
+package com.github.lipenathan.aula3.model.entities
 
 import java.io.Serializable
 

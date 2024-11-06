@@ -6,7 +6,7 @@ import android.util.Log
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import com.github.lipenathan.aula3.databinding.ActivityMainBinding
-import com.github.lipenathan.aula3.entities.Person
+import com.github.lipenathan.aula3.model.entities.Person
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -50,7 +50,7 @@ class MainActivity : AppCompatActivity() {
                 val text = inputUsuario.text.toString()
                 textConteudo.text = text
 
-                val intent = Intent(this@MainActivity, CadastroPessoaActivity::class.java)
+                val intent = Intent(this@MainActivity, ConselhosActivity::class.java)
 
                 launcher.launch(intent)
             }

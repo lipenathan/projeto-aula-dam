@@ -4,7 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.github.lipenathan.aula3.databinding.ActivityCadastroPessoaBinding
-import com.github.lipenathan.aula3.entities.Person
+import com.github.lipenathan.aula3.model.entities.Person
 import com.google.android.material.snackbar.Snackbar
 
 class CadastroPessoaActivity: AppCompatActivity() {
