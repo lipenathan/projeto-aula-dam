@@ -1,12 +1,18 @@
 package com.github.lipenathan.aula3.views
 
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
 import com.github.lipenathan.aula3.databinding.ActivityMainBinding
 import com.github.lipenathan.aula3.entities.Person
+import com.google.android.material.snackbar.Snackbar
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
 
@@ -20,8 +26,12 @@ class MainActivity : AppCompatActivity() {
         val launcher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             //será executado após a acitivty que está iniciar for finalizada
 
-            if (result.data != null) {
-                val person = result.data!!.getSerializableExtra("cadastro_result") as Person
+            if (result.data != null && result.resultCode == RESULT_OK) {
+                val person = if (Build.VERSION.SDK_INT > Build.VERSION_CODES.TIRAMISU) {
+                result.data!!.getSerializableExtra("result_person", Person::class.java)
+                } else {
+                    result.data!!.getSerializableExtra("result_person") as Person
+                }
                 binding.textConteudo.text = person.toString()
             }
         }
@@ -40,6 +50,7 @@ class MainActivity : AppCompatActivity() {
                 launcher.launch(intent)
             }
         }
+
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
