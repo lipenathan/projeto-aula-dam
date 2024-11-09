@@ -34,6 +34,7 @@ class ConselhosActivity : AppCompatActivity() {
 
     /**
      * método responsável por utilizar serviço REST criado para realizar chamada de conselhos aleatórios
+     * LER README para Suspend Functions
      */
     private suspend fun fetchAdvice() {
         val response = service.getRandomAdvice()

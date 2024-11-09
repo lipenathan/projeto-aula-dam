@@ -30,6 +30,7 @@ class AdvicesService {
 
     /**
      * Chamada suspensa para busca de conselhos aleátórios
+     * LER README para Suspend Functions
      */
     suspend fun getRandomAdvice(): Response<Advice> {
         return api.getRandomAdvice()
