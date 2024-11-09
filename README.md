@@ -2,7 +2,7 @@ Projeto Android Disciplina Desenvolvimento de Aplicativos Utilizando API's exter
 
 Projeto exemplo a ser evoluído durante o decorrer das disciplinas de acordo com o conteudo ministrado.
 
-AULA do dia 30/10/2024
+AULA do dia 06/11/2024
 
 Tópicos Abordados até aqui:
 
@@ -17,3 +17,8 @@ Manipulando dados da UI/XML
 ViewBinding
 Navegação
 Coroutines
+
+Gradle
+Retrofit para chamadas REST
+Gson como parser de dados recebidos do REST
+OkHttp para criar client de chamadas REST
